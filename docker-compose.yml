@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  php-order-service:
+    build:
+      context: ./php-order-service
+      dockerfile: Dockerfile
+    container_name: php-order-service
+    working_dir: /var/www
+    ports:
+      - "8000:8000"
+    command: php artisan serve --host=0.0.0.0 --port=8000
+    depends_on:
+      - node-product-service
+    networks:
+      - backend
+
+  node-product-service:
+    build:
+      context: ./node-product-service
+      dockerfile: Dockerfile
+    container_name: node-product-service
+    ports:
+      - "3000:3000"
+    working_dir: /app
+    command: npm run start:dev
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
