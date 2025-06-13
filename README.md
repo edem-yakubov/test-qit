@@ -55,4 +55,4 @@ Used PHP version: 8.4
 
 ### Notes:
 Used SQL Lite for both services.
-I dont use any security to communicate between services, to keep it simple. Otherwise it can be implemented with some token or use VPC.
+To keep the architecture straightforward, I haven't implemented security between services. If needed, this can be enhanced by using authentication tokens or deploying services within a private VPC.
